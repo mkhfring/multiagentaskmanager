@@ -1,3 +1,4 @@
+from threading import Thread
 from .agents import Greeting, Goodby
 
 
@@ -9,7 +10,8 @@ class MultiAgentTaskManager:
 
     def consum(self):
         for agent in self.agents:
-            agent.consum_tasks(self.tasks)
+            t = Thread(target=agent.consum_tasks, args=(self.tasks,))
+            t.start()
 
 
     @property
