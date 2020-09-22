@@ -12,10 +12,10 @@ def test_multi_agent_manager():
     assert multiagent_task_manager.get_agents != None
     multiagent_task_manager.consum()
 
-def test_agents():
-    greeting = Greeting()
-    greeting.consum_tasks(tasks)
-    goodby = Goodby()
-    goodby.consum_tasks(tasks)
+#def test_agents():
+#    greeting = Greeting()
+#    greeting.consum_tasks(tasks)
+#    goodby = Goodby()
+#    goodby.consum_tasks(tasks)
 
 
