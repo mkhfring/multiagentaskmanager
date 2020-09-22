@@ -5,7 +5,7 @@ import pytest
 from multiagent import MultiAgentTaskManager, Greeting, Goodby
 
 
-tasks =  ['Mohamad', 'Mehdi']
+tasks =  ['mehdi', 'Mohamad', 'ghazal', 'alireza']
 
 def test_multi_agent_manager():
     multiagent_task_manager = MultiAgentTaskManager(tasks)
