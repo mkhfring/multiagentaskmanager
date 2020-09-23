@@ -1,3 +1,4 @@
 pytest-pudb
 pytest
+celery
 

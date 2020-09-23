@@ -1,2 +1,2 @@
-from .multiagent import MultiAgentTaskManager
-from .agents import Greeting, Goodby
+from multiagent.multiagent import MultiAgentTaskManager
+from multiagent.agents import Greeting, Goodby

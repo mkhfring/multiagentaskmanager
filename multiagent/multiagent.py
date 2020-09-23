@@ -1,6 +1,10 @@
 from threading import Thread
-from .agents import Greeting, Goodby
+from multiagent.agents import Greeting, Goodby
+from celery import Celery
 
+
+tasks =  ['mehdi', 'Mohamad', 'ghazal', 'alireza']
+app = Celery('agents', backend='rpc://', brocker='pyamp://gust@localhost', include=["tests"])
 
 class MultiAgentTaskManager:
 
@@ -23,3 +27,8 @@ class MultiAgentTaskManager:
     def get_task_result(self):
         return self.task_result
 
+#print("!!!!!!!!!!!!!!")
+manager = MultiAgentTaskManager(tasks)
+app.tasks.register(Greeting(manager))
+#greeting = Greeting(manager)
+#greeting.delay()

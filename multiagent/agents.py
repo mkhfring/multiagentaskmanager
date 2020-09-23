@@ -1,7 +1,9 @@
 import time
+from celery import Celery, Task
 
 
-class Agent:
+
+class Agent(Task):
     def __init__(self, manager):
         self.task_index = 0
         self.manager = manager
@@ -24,7 +26,6 @@ class Greeting(Agent):
 
 
     def consum_tasks(self):
-        self.add_agent_result_to_manager()
         while self.task_index != len(self.manager.tasks):
             task = self.manager.tasks[self.task_index]
             self.manager.task_result[self.name]['current_task'] = task
@@ -34,6 +35,11 @@ class Greeting(Agent):
             self.manager.task_result[self.name]['finished_tasks'].append(task)
             self.task_index += 1
             time.sleep(1)
+
+    def run(self):
+        self.add_agent_result_to_manager()
+        self.consum_tasks()
+
 
 
 class Goodby(Agent):
@@ -50,4 +56,7 @@ class Goodby(Agent):
             self.manager.task_result[self.name]['finished_tasks'].append(task)
             self.task_index += 1
             time.sleep(2)
+
+#if __name__ == "__main__":
+
 
