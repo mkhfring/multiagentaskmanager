@@ -1,5 +1,8 @@
 from threading import Thread
+import asyncio
+
 from .agents import Greeting, Goodby
+
 
 
 class MultiAgentTaskManager:
@@ -10,10 +13,15 @@ class MultiAgentTaskManager:
         self.task_result = {}
 
     def consum(self):
-        for agent in self.agents:
-            t = Thread(target=agent.consum_tasks)
-            t.start()
-
+        loop = asyncio.get_event_loop()
+        tasks = [
+            loop.create_task(
+                agent.consum_tasks()
+            ) for agent in self.agents
+        ]
+        loop.run_until_complete(asyncio.gather(*tasks))
+#            t = Thread(target=agent.consum_tasks)
+#            t.start()
 
     @property
     def get_agents(self):

@@ -1,4 +1,5 @@
 import time
+import asyncio
 
 
 class Agent:
@@ -23,7 +24,7 @@ class Greeting(Agent):
         self.name = 'Greeting'
 
 
-    def consum_tasks(self):
+    async def consum_tasks(self):
         self.add_agent_result_to_manager()
         while self.task_index != len(self.manager.tasks):
             task = self.manager.tasks[self.task_index]
@@ -33,7 +34,7 @@ class Greeting(Agent):
             print (f"hello {task}")
             self.manager.task_result[self.name]['finished_tasks'].append(task)
             self.task_index += 1
-            time.sleep(1)
+            await asyncio.sleep(1)
 
 
 class Goodby(Agent):
@@ -41,7 +42,7 @@ class Goodby(Agent):
         super().__init__(manager)
         self.name = 'Goodby'
 
-    def consum_tasks(self):
+    async def consum_tasks(self):
         self.add_agent_result_to_manager()
         while self.task_index != len(self.manager.tasks):
             task = self.manager.tasks[self.task_index]
@@ -49,5 +50,6 @@ class Goodby(Agent):
             print (f"Goodby {task}")
             self.manager.task_result[self.name]['finished_tasks'].append(task)
             self.task_index += 1
-            time.sleep(2)
+            await asyncio.sleep(2)
+
 
