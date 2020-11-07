@@ -41,6 +41,8 @@ class Agent:
                 assert 1==1
             self.manager.task_result[self.scanner_name]['finished_tasks'].append(task)
             self.task_index += 1
+            progress = (self.task_index / len(self.manager.tasks)) * 100
+            self.manager.task_result[self.scanner_name]['prgress'] = progress
 
         self.manager.number_of_finished_agents += 1
         assert 1 == 1

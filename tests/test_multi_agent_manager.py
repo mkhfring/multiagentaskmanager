@@ -18,10 +18,3 @@ def test_multi_agent_manager():
     assert 1 == 1
 
 
-#def test_agents():
-#    greeting = Greeting()
-#    greeting.consum_tasks(tasks)
-#    goodby = Goodby()
-#    goodby.consum_tasks(tasks)
-
-
