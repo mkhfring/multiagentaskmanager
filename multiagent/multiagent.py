@@ -7,11 +7,9 @@ from .agents import Agent
 
 
 
-
-
 class MultiAgentTaskManager:
 
-    def __init__(self, task_list):
+    def __init__(self, task_list=None):
         response = requests.get(
             'http://192.168.40.34:8081/api/v1/scanners',
             auth=('admin', 'admin')
